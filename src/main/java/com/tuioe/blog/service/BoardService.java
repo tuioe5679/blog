@@ -15,4 +15,8 @@ public class BoardService {
     public List<Board> findAllBoard(){
         return boardRepositroy.findAll();
     }
+
+    public void creatBoard(Board board){
+        boardRepositroy.save(board);
+    }
 }
