@@ -5,10 +5,8 @@ import com.tuioe.blog.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -27,4 +25,12 @@ public class BoardController {
         boardService.creatBoard(board);
         return new ResponseEntity("Create",HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/board/{id}",method = RequestMethod.PUT)
+    public ResponseEntity boardUpdate(@PathVariable int id,@RequestBody Board board){
+        boardService.updateBoard(id,board);
+        return new ResponseEntity("Update",HttpStatus.OK);
+    }
+
+
 }

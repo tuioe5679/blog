@@ -19,4 +19,15 @@ public class BoardService {
     public void creatBoard(Board board){
         boardRepositroy.save(board);
     }
+
+    public void updateBoard(int id,Board board){
+        Board udBoard = boardRepositroy.findById(id).get();
+        udBoard.setTitle(board.getTitle());
+        udBoard.setContent(board.getContent());
+        udBoard.setName(board.getName());
+        udBoard.setDate(board.getDate());
+        boardRepositroy.save(udBoard);
+    }
+
+
 }
