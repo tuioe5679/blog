@@ -2,7 +2,7 @@ package com.tuioe.blog.Entity;
 
 import lombok.Data;
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Table(name = "board") //테이블 이름 지정
 @Entity //Entity 클래스로 지정 (데이터베이스와 매핑)
@@ -22,7 +22,7 @@ public class Board {
     private String name;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
 
     @Column(nullable = false)
     private int hits;
