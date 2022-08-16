@@ -32,5 +32,11 @@ public class BoardController {
         return new ResponseEntity("Update",HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/board/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity boardDelete(@PathVariable int id){
+        boardService.deleteBoard(id);
+        return new ResponseEntity("Delete",HttpStatus.OK);
+    }
+
 
 }
