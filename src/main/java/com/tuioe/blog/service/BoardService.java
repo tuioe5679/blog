@@ -28,9 +28,15 @@ public class BoardService {
         udBoard.setDate(board.getDate());
         boardRepositroy.save(udBoard);
     }
+
     public void deleteBoard(int id){
         Board board = boardRepositroy.findById(id).get();
         boardRepositroy.delete(board);
     }
+
+    public void deleteAllBoard(){
+        boardRepositroy.deleteAll();
+    }
+
 
 }

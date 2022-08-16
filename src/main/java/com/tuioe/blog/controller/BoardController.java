@@ -37,6 +37,13 @@ public class BoardController {
         boardService.deleteBoard(id);
         return new ResponseEntity("Delete",HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/boards",method = RequestMethod.DELETE)
+    public ResponseEntity boardAllDelete(){
+        boardService.deleteAllBoard();
+        return new ResponseEntity("AllDelete",HttpStatus.OK);
+    }
+
 
 
 }
