@@ -19,6 +19,7 @@ public class BoardService {
     }
 
     public void creatBoard(Board board){
+        board.setDate(LocalDate.now());
         boardRepositroy.save(board);
     }
 
