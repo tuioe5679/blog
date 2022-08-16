@@ -4,6 +4,8 @@ import com.tuioe.blog.Entity.Board;
 import com.tuioe.blog.repositroy.BoardRepositroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -25,7 +27,8 @@ public class BoardService {
         udBoard.setTitle(board.getTitle());
         udBoard.setContent(board.getContent());
         udBoard.setName(board.getName());
-        udBoard.setDate(board.getDate());
+        udBoard.setHits(board.getHits());
+        udBoard.setDate(LocalDate.now());
         boardRepositroy.save(udBoard);
     }
 
