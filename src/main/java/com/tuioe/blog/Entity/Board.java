@@ -1,6 +1,6 @@
 package com.tuioe.blog.Entity;
 
-import com.tuioe.blog.dto.RequestDTO;
+import com.tuioe.blog.dto.BoardDTO;
 import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -28,7 +28,7 @@ public class Board {
     @Column(nullable = false)
     private int hits;
 
-    public static Board create(RequestDTO DTO){
+    public static Board create(BoardDTO DTO){
         Board board = new Board();
         board.title = DTO.getTitle();
         board.content = DTO.getContent();

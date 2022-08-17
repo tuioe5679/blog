@@ -3,19 +3,21 @@ package com.tuioe.blog.dto;
 import com.tuioe.blog.Entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-public class ResponseDTO {
+public class BoardDTO {
     private String title;
     private String content;
     private String name;
     private LocalDate date;
 
-    public static ResponseDTO create(Board board){
-        return new ResponseDTO(board.getTitle(),board.getContent(),
-                               board.getName(),board.getDate());
+    public static BoardDTO create(Board board){
+        return new BoardDTO(board.getTitle(),board.getContent(),
+                            board.getName(),board.getDate());
     }
 }
