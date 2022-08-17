@@ -3,6 +3,7 @@ package com.tuioe.blog.controller;
 import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Transient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class BoardController {
         return new ResponseEntity(boardService.findAllBoard(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/board/id",method = RequestMethod.GET)
+    @RequestMapping(value = "/board/{id}",method = RequestMethod.GET)
     public ResponseEntity findBoard(@PathVariable int id){
         return new ResponseEntity(boardService.findBoard(id),HttpStatus.OK);
     }
