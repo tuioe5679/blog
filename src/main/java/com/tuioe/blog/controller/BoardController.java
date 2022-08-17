@@ -20,6 +20,12 @@ public class BoardController {
         List<Board> board = boardService.findAllBoard();
         return new ResponseEntity(board, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/board/id",method = RequestMethod.GET)
+    public ResponseEntity findBoard(@PathVariable int id){
+        return new ResponseEntity(boardService.findBoard(id),HttpStatus.OK);
+    }
+    
     @RequestMapping(value = "/board",method = RequestMethod.POST)
     public ResponseEntity boardAdd(@RequestBody Board board){
         boardService.creatBoard(board);

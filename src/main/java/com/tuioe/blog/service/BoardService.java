@@ -18,6 +18,10 @@ public class BoardService {
         return boardRepositroy.findAll();
     }
 
+    public Board findBoard(int id){
+        return boardRepositroy.findById(id).get();
+    }
+
     public void creatBoard(Board board){
         board.setDate(LocalDate.now());
         boardRepositroy.save(board);
