@@ -46,7 +46,4 @@ public class BoardController {
         boardService.deleteAllBoard();
         return new ResponseEntity("AllDelete",HttpStatus.OK);
     }
-
-
-
 }
