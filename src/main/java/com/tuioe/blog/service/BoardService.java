@@ -1,11 +1,12 @@
 package com.tuioe.blog.service;
 
 import com.tuioe.blog.Entity.Board;
+import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.repositroy.BoardRepositroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,27 +15,34 @@ public class BoardService {
     @Autowired
     private BoardRepositroy boardRepositroy;
 
-    public List<Board> findAllBoard(){
-        return boardRepositroy.findAll();
+    public List<BoardDTO> findAllBoard(){
+        List<Board> boards =boardRepositroy.findAll();
+        List<BoardDTO> responseDTOS = new ArrayList<>();
+        for(Board board: boards){
+            responseDTOS.add(BoardDTO.create(board));
+        }
+        return responseDTOS;
     }
 
-    public Board findBoard(int id){
-        return boardRepositroy.findById(id).get();
+    public BoardDTO findBoard(int id){
+        return BoardDTO.create(boardRepositroy.findById(id).get());
     }
 
-    public void creatBoard(Board board){
-        board.setDate(LocalDate.now());
+    public void createBoard(BoardDTO dto){
+        Board board = Board.create(dto);
         boardRepositroy.save(board);
     }
 
-    public void updateBoard(int id,Board board){
-        Board udBoard = boardRepositroy.findById(id).get();
-        udBoard.setTitle(board.getTitle());
-        udBoard.setContent(board.getContent());
-        udBoard.setName(board.getName());
-        udBoard.setHits(board.getHits());
-        udBoard.setDate(LocalDate.now());
-        boardRepositroy.save(udBoard);
+    public void updateBoard(int id,BoardDTO dto){
+        Board board = boardRepositroy.findById(id).get();
+        if(dto.getContent() != null){
+            board.setContent(dto.getContent());
+        }
+        if(dto.getTitle() != null){
+            board.setTitle(dto.getTitle());
+        }
+        board.setDate(LocalDate.now());
+        boardRepositroy.save(board);
     }
 
     public void deleteBoard(int id){
@@ -45,6 +53,4 @@ public class BoardService {
     public void deleteAllBoard(){
         boardRepositroy.deleteAll();
     }
-
-
 }

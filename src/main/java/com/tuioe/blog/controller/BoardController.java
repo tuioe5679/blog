@@ -1,13 +1,11 @@
 package com.tuioe.blog.controller;
 
-import com.tuioe.blog.Entity.Board;
+import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class BoardController {
@@ -17,24 +15,23 @@ public class BoardController {
 
     @RequestMapping(value = "/boards",method = RequestMethod.GET)
     public ResponseEntity list(){
-        List<Board> board = boardService.findAllBoard();
-        return new ResponseEntity(board, HttpStatus.OK);
+        return new ResponseEntity(boardService.findAllBoard(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/board/id",method = RequestMethod.GET)
     public ResponseEntity findBoard(@PathVariable int id){
         return new ResponseEntity(boardService.findBoard(id),HttpStatus.OK);
     }
-    
+
     @RequestMapping(value = "/board",method = RequestMethod.POST)
-    public ResponseEntity boardAdd(@RequestBody Board board){
-        boardService.creatBoard(board);
+    public ResponseEntity boardAdd(@RequestBody BoardDTO dto){
+        boardService.createBoard(dto);
         return new ResponseEntity("Create",HttpStatus.OK);
     }
 
     @RequestMapping(value = "/board/{id}",method = RequestMethod.PUT)
-    public ResponseEntity boardUpdate(@PathVariable int id,@RequestBody Board board){
-        boardService.updateBoard(id,board);
+    public ResponseEntity boardUpdate(@PathVariable int id,@RequestBody BoardDTO dto){
+        boardService.updateBoard(id,dto);
         return new ResponseEntity("Update",HttpStatus.OK);
     }
 
