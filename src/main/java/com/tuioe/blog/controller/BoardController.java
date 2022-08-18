@@ -3,7 +3,6 @@ package com.tuioe.blog.controller;
 import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Transient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
