@@ -1,7 +1,6 @@
 package com.tuioe.blog.Entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Table(name = "member")
