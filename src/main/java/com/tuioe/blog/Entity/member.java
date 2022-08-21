@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "member")
 @Entity
 @Data
-public class member {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public class member {
     @Column(nullable = false,length = 15)
     private String id;
 
-    @Column(nullable = false,length = 15)
+    @Column(nullable = false,length = 300)
     private String password;
 
     @Column(nullable = false,length = 30)
