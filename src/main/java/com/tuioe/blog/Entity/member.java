@@ -7,10 +7,11 @@ import javax.persistence.*;
 @Entity
 @Data
 public class Member {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer num;
+    @Column(name = "member_id")
+    private Integer idx;
+
     @Column(nullable = false,length = 15)
     private String id;
 
@@ -20,7 +21,7 @@ public class Member {
     @Column(nullable = false,length = 30)
     private String name;
 
-    @Column(nullable = false,length = 30)
+    @Column(name = "member_nickname",nullable = false,length = 30)
     private String nickname;
 
     @Column(nullable = false,length = 15)

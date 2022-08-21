@@ -1,11 +1,10 @@
 package com.tuioe.blog.Entity;
 
-import com.tuioe.blog.dto.BoardDTO;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Table(name = "comment")
 @Entity
@@ -25,6 +24,6 @@ public class Comment {
 
     @Column(nullable = false)
     @CreatedDate
-    private LocalDate date;
+    private LocalDateTime date;
 
 }

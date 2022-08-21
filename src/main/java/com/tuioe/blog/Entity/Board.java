@@ -29,6 +29,10 @@ public class Board {
     @CreatedDate// Entity가 생성되어 저장할때 현재 시간을 자동 생성한다
     private LocalDateTime date;
 
+    @ManyToOne
+    @JoinColumn(name="member_nickname")
+    private Member member;
+
     @Column(nullable = false)
     private int hits;
 
