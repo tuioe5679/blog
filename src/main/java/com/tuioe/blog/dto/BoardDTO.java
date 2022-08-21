@@ -1,21 +1,19 @@
 package com.tuioe.blog.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tuioe.blog.Entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class BoardDTO {
     private String title;
     private String content;
     private String name;
-    private LocalDate date;
+    private LocalDateTime date;
 
     public static BoardDTO create(Board board){
         return new BoardDTO(board.getTitle(),board.getContent(),
