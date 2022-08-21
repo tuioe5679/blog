@@ -6,7 +6,6 @@ import com.tuioe.blog.repositroy.BoardRepositroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +46,6 @@ public class BoardService {
         if(dto.getTitle() != null){
             board.setTitle(dto.getTitle());
         }
-        board.setDate(LocalDate.now());
         boardRepositroy.save(board);
     }
     //블로그에 작성된 글을 삭제
