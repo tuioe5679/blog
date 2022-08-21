@@ -21,7 +21,7 @@ public class Member {
     @Column(nullable = false,length = 30)
     private String name;
 
-    @Column(name = "member_nickname",nullable = false,length = 30)
+    @Column(nullable = false,length = 30)
     private String nickname;
 
     @Column(nullable = false,length = 15)
