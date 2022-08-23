@@ -2,6 +2,7 @@ package com.tuioe.blog.controller;
 
 import com.tuioe.blog.Entity.Member;
 import com.tuioe.blog.repositroy.MemberRepositroy;
+import com.tuioe.blog.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     @Autowired
-    MemberRepositroy memberRepositroy;
-
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    MemberService memberService;
 
     @GetMapping("/")
     public String getMainPage(){
@@ -51,11 +49,7 @@ public class MainController {
 
     @PostMapping("/singup")
     public String SingUp(Member member){
-        member.setRole("ROLE_USER");
-        String password = member.getPassword();
-        String EncPassword = bCryptPasswordEncoder.encode(password);
-        member.setPassword(EncPassword);
-        memberRepositroy.save(member);
+        memberService.Join(member);
         return "redirect:/login.html";
     }
 }
