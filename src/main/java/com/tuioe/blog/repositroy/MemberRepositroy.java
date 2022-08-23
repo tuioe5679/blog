@@ -1,6 +1,5 @@
 package com.tuioe.blog.repositroy;
 
-import com.tuioe.blog.Entity.Board;
 import com.tuioe.blog.Entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
