@@ -16,7 +16,7 @@ public class Member {
     @Column(name = "member_id")// 이름 지정
     private Integer idx;
 
-    @Column(nullable = false,length = 30,unique = true)// null X 길이는 30 unique 제약조건 (테이블내의 유일한 값으로 갖는다) 중복 허용 안함 
+    @Column(nullable = false,length = 30,unique = true)// null X 길이는 30 unique 제약조건 (테이블내의 유일한 값으로 갖는다) 중복 허용 안함
     private String email;
 
     @Column(nullable = false,length = 300)// null X 길이는 300 (BCryptPasswordEncoder 암호화)
@@ -25,7 +25,7 @@ public class Member {
     @Column(nullable = false,length = 30)// null X 길이는 30
     private String name;
 
-    @Column(nullable = false,length = 30)// null X 길이는 30
+    @Column(nullable = false,length = 30,unique = true)// null X 길이는 30 unique 제약조건 (테이블내의 유일한 값으로 갖는다) 중복 허용 안함
     private String nickname;
 
     @Column(nullable = false,length = 15)// null X 길이는 15

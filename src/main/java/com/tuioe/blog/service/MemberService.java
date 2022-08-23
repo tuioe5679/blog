@@ -18,7 +18,7 @@ public class MemberService {
 
     //회원가입 처리
     public void Join(Member member){
-        member.setRole("ROLE_USER");
+        member.setRole("ROLE_ADMIN");
         // 패스워드는 bCryptPasswordEncoder를 통해서 암호화 해야 Security 로그인 가능
         String EncPassword = bCryptPasswordEncoder.encode(member.getPassword());
         member.setPassword(EncPassword);

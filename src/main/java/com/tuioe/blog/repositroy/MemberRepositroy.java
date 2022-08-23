@@ -10,5 +10,5 @@ public interface MemberRepositroy extends JpaRepository<Member, Integer> {
     // Select * from member where email = ?;
     // Select 쿼리를 통해서 email을 가지는 유저 정보를 모두 가져옴 (따로 쿼리 작성 필요 X)
 
-     Member findByEmail(@Param("email") String email);
+     Member findByEmail(String email);
 }
