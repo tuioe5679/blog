@@ -1,12 +1,11 @@
 package com.tuioe.blog.controller;
 
 import com.tuioe.blog.Entity.Member;
+import com.tuioe.blog.repositroy.MemberRepositroy;
 import com.tuioe.blog.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
@@ -14,20 +13,23 @@ public class MainController {
     @Autowired
     MemberService memberService;
 
+    @Autowired
+    MemberRepositroy memberRepositroy;
+
     @GetMapping("/")
     public String getMainPage(){
         return "main.html";
+    }
+    @ResponseBody
+    @GetMapping("/get")
+    public Member getMember(@RequestParam String email){
+        Member member = memberRepositroy.findByEmail(email);
+        return member;
     }
 
     @GetMapping("/login")
     public String getLoginPage(){
         return "login.html";
-    }
-
-    @ResponseBody
-    @PostMapping("/login")
-    public  String Login(){
-        return "로그인 완료";
     }
 
     @GetMapping("/user")
