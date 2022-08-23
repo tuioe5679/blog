@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-// 시큐리티가 /login 주소 요청이 오면 낚아채서 로그인을 진행
+// 시큐리티가 /login 주소 요청이 오면 로그인을 진행
 // 로그인을 진행이 완료 되면 시큐리티 session을 만들어준다 (Security ContextHolder)
 // 오브젝트 타입 -> Authentication 타입 객체
 // Authentication 안에 User 정보가 있어야 됨
@@ -28,7 +28,6 @@ public class PrincipalDetails implements UserDetails {
     // 해당 계정의 권한을 리턴
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //ArrayList로 선언
         Collection<GrantedAuthority> collection = new ArrayList<>();
         collection.add(new GrantedAuthority() {
             @Override
@@ -52,18 +51,18 @@ public class PrincipalDetails implements UserDetails {
     }
 
     @Override
-    // 만료된 계정 여부
+    // 만료된 계정이 아닌지 여부
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    // 계정 잠금 여부
+    // 계정 잠금이 아닌지 여부
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
-    // 휴먼 계정 여부
+    // 휴먼 계정이 아닌지 여부
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
