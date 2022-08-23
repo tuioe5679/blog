@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean// 해당 메소드의 리턴되는 오브젝트를 IOC로 등록
-    public BCryptPasswordEncoder encoder(){
+    public BCryptPasswordEncoder encoder(){ // 비밀번호 암호화
         return new BCryptPasswordEncoder();
     }
 
@@ -25,7 +25,9 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
                 .and()
         .formLogin()
-                .loginPage("/login/form");
+                .loginPage("/login/form")// 로그인 페이지 URL
+                .loginProcessingUrl("/login")// 로그인 URL을 통해 시큐리티가 대신 로그인을 진행
+                .defaultSuccessUrl("/");// 로그인 완료시 이동할 URL
         return http.build();
     }
 }
