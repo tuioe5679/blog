@@ -9,16 +9,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService {
 
-    @Autowired
+    @Autowired//
     MemberRepositroy memberRepositroy;
 
+    // 패스워크 암호화
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    //회원가입 처리
     public void Join(Member member){
         member.setRole("ROLE_USER");
-        String password = member.getPassword();
-        String EncPassword = bCryptPasswordEncoder.encode(password);
+        // 패스워드는 bCryptPasswordEncoder를 통해서 암호화 해야 Security 로그인 가능
+        String EncPassword = bCryptPasswordEncoder.encode(member.getPassword());
         member.setPassword(EncPassword);
         memberRepositroy.save(member);
     }
