@@ -20,12 +20,6 @@ public class MainController {
     public String getMainPage(){
         return "main.html";
     }
-    @ResponseBody
-    @GetMapping("/get")
-    public Member getMember(@RequestParam String email){
-        Member member = memberRepositroy.findByEmail(email);
-        return member;
-    }
 
     @GetMapping("/login")
     public String getLoginPage(){
