@@ -19,4 +19,12 @@ public class BoardDTO {
         return new BoardDTO(board.getTitle(),board.getContent(),
                             board.getName(),board.getDate());
     }
+
+    public static Board boardCreate(BoardDTO dto){
+        return Board.builder()
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .name(dto.getName())
+                .hits(0).build();
+    }
 }

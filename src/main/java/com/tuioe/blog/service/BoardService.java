@@ -33,7 +33,7 @@ public class BoardService {
     }
     //블로그에 글 작성
     public void createBoard(BoardDTO dto){
-        Board board = Board.create(dto);
+        Board board = BoardDTO.boardCreate(dto);
         boardRepositroy.save(board);
     }
     //블로그에 작성된 글을 수정
