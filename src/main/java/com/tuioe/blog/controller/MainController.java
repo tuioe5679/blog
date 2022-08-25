@@ -1,7 +1,6 @@
 package com.tuioe.blog.controller;
 
-import com.tuioe.blog.Entity.Member;
-import com.tuioe.blog.repositroy.MemberRepositroy;
+import com.tuioe.blog.dto.MemberDTO;
 import com.tuioe.blog.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +11,6 @@ public class MainController {
 
     @Autowired
     MemberService memberService;
-
-    @Autowired
-    MemberRepositroy memberRepositroy;
 
     @GetMapping("/")
     public String getMainPage(){
@@ -42,8 +38,8 @@ public class MainController {
     }
 
     @PostMapping("/singup")
-    public String SingUp(Member member){
-        memberService.Join(member);
+    public String SingUp(MemberDTO dto){
+        memberService.Join(dto);
         return "redirect:/login.html";
     }
 }
