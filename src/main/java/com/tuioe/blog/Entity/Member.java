@@ -1,5 +1,6 @@
 package com.tuioe.blog.Entity;
 
+import com.tuioe.blog.dto.MemberDTO;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -37,4 +38,15 @@ public class Member {
     @Column(nullable = false)// null X
     @CreatedDate// Entity가 생성되어 저장할때 현재 시간을 자동 생성한다
     private LocalDateTime createDate;
+
+    public static Member create(MemberDTO dto){
+        Member member = new Member();
+        member.email = dto.getEmail();
+        member.password = dto.getPassword();
+        member.name = dto.getName();
+        member.nickname = dto.getNickname();
+        member.phoneNumber = dto.getPhoneNumber();
+        member.role = "ROLE_USER";
+        return member;
+    }
 }
