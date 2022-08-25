@@ -22,7 +22,7 @@ public class MemberService {
         // 패스워드는 bCryptPasswordEncoder를 통해서 암호화 해야 Security 로그인 가능
         String EncPassword = bCryptPasswordEncoder.encode(dto.getPassword());
         dto.setPassword(EncPassword);
-        Member member = Member.create(dto);
+        Member member = MemberDTO.memberCreate(dto);
         memberRepositroy.save(member);
     }
 }

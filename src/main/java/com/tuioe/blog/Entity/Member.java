@@ -1,7 +1,6 @@
 package com.tuioe.blog.Entity;
 
-import com.tuioe.blog.dto.MemberDTO;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
@@ -9,8 +8,12 @@ import java.time.LocalDateTime;
 
 @Table(name = "member") // 테이블 이름 지정
 @Entity // Entity 클래스로 지정 (데이터베이스와 매핑)
-@Data // lombok의 어노테이션 (get,set,toString 메소드를 자동 생성)
+@Getter // Get 메소드 생성
+@Builder // Builder 패턴 어노테이션
+@NoArgsConstructor // 기본 생성자
+@AllArgsConstructor // 모든 인자를 받는 생성자 (Builder를 쓸때 NoArgsConstructor만 있으면 Builder 어노테이션 사용 불가 )
 @EntityListeners(AuditingEntityListener.class)// 엔티티 리스너를 적용 (Auditing 기능을 포함시킨다) @CreateDate 기능 사용시 필요
+
 public class Member {
     @Id// PK 기본키
     @GeneratedValue(strategy = GenerationType.IDENTITY)// 기본키 생성 전략을 DB에게 위임(MySQL = Auto INCREMENT)
@@ -39,14 +42,4 @@ public class Member {
     @CreatedDate// Entity가 생성되어 저장할때 현재 시간을 자동 생성한다
     private LocalDateTime createDate;
 
-    public static Member create(MemberDTO dto){
-        Member member = new Member();
-        member.email = dto.getEmail();
-        member.password = dto.getPassword();
-        member.name = dto.getName();
-        member.nickname = dto.getNickname();
-        member.phoneNumber = dto.getPhoneNumber();
-        member.role = "ROLE_USER";
-        return member;
-    }
 }
