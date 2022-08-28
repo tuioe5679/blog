@@ -41,6 +41,10 @@ public class Member {
     @Column(nullable = false,length = 10)// null X 길이는 10
     private String role;
 
+    @Column(nullable = false)// null X
+    @CreatedDate// Entity가 생성되어 저장할때 현재 시간을 자동 생성한다
+    private LocalDateTime createDate;
+
     @Builder
     public Member(Integer idx, String email, String password, String name, String nickname, String phoneNumber, String role, LocalDateTime createDate) {
         this.idx = idx;
@@ -53,8 +57,6 @@ public class Member {
         this.createDate = createDate;
     }
 
-    @Column(nullable = false)// null X
-    @CreatedDate// Entity가 생성되어 저장할때 현재 시간을 자동 생성한다
-    private LocalDateTime createDate;
+
 
 }
