@@ -27,7 +27,7 @@ public class BoardController {
     @RequestMapping(value = "/board",method = RequestMethod.POST)
     public ResponseEntity boardAdd(@RequestBody BoardDTO dto){
         boardService.createBoard(dto);
-        return new ResponseEntity("Create",HttpStatus.OK);
+        return new ResponseEntity("Create",HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/board/{id}",method = RequestMethod.PUT)
