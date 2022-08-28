@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "member") // 테이블 이름 지정
 @Entity // Entity 클래스로 지정 (데이터베이스와 매핑)
 @Getter // Get 메소드 생성
-@Builder // Builder 패턴 어노테이션
+@Builder // Builder 패턴
 @NoArgsConstructor // 기본 생성자
 @AllArgsConstructor // 모든 인자를 받는 생성자 (Builder를 쓸때 NoArgsConstructor만 있으면 Builder 어노테이션 사용 불가 )
 @EntityListeners(AuditingEntityListener.class)// 엔티티 리스너를 적용 (Auditing 기능을 포함시킨다) @CreateDate 기능 사용시 필요

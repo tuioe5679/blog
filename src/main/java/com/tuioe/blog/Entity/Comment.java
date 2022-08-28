@@ -1,5 +1,6 @@
 package com.tuioe.blog.Entity;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "comment") // 테이블 이름 지정
 @Entity // Entity 클래스로 지정 (데이터베이스와 매핑)
 @Data // lombok의 어노테이션 (get,set,toString 메소드를 자동 생성)
+@Builder // Builder 패턴
 @EntityListeners(AuditingEntityListener.class)// 엔티티 리스너를 적용 (Auditing 기능을 포함시킨다) @CreateDate 기능 사용시 필요
 public class Comment {
 

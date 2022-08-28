@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService {
 
-    @Autowired//
+    @Autowired
     MemberRepositroy memberRepositroy;
 
     // 패스워크 암호화
