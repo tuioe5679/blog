@@ -2,6 +2,7 @@ package com.tuioe.blog.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tuioe.blog.Entity.Comment;
+import com.tuioe.blog.Entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,9 @@ public class CommentDTO {
                               comment.getDate());
     }
 
-    public Comment commentCreate(CommentDTO commentDTO){
+    public Comment commentCreate(CommentDTO dto){
         return Comment.builder()
-                .content(commentDTO.getContent())
+                .content(dto.getContent())
                 .build();
     }
 }

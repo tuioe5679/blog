@@ -37,7 +37,7 @@ public class MemberDTO {
                 .name(dto.getName())
                 .nickname(dto.getNickname())
                 .phoneNumber(dto.getPhoneNumber())
-                .role("ROLE_USER").build();
+                .role("USER").build();
 
         return member;
     }
