@@ -1,16 +1,21 @@
 package com.tuioe.blog.controller;
 
 import com.tuioe.blog.dto.MemberDTO;
+import com.tuioe.blog.service.CommentService;
 import com.tuioe.blog.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import java.security.Principal;
 
 @Controller
 public class MainController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    CommentService commentService;
 
     @GetMapping("/")
     public String getMainPage(){
@@ -23,7 +28,9 @@ public class MainController {
     }
 
     @GetMapping("/user")
-    public String getUserPage(){
+    public String getUserPage(Principal principal){
+        String username = principal.getName();
+        commentService.getUsername(username);
         return "user.html";
     }
 
