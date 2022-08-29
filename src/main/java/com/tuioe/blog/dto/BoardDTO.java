@@ -12,10 +12,14 @@ import java.time.LocalDateTime;
 public class BoardDTO {
     private String title;
     private String content;
+    private String nickname;
     private LocalDateTime date;
 
-    public static BoardDTO create(Board board){
-        return new BoardDTO(board.getTitle(),board.getContent(),board.getDate());
+    public static BoardDTO create(Board board,String nickname){
+        return new BoardDTO(board.getTitle(),
+                            board.getContent(),
+                            nickname,
+                            board.getDate());
     }
 
     public static Board boardCreate(BoardDTO dto){

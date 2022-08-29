@@ -25,7 +25,7 @@ public class BoardService {
         List<Board> boards = boardRepositroy.findAll();
         List<BoardDTO> responseDTOS = new ArrayList<>();
         for(Board board: boards){ // 향상된 for문 사용 주로 배열에 사용
-            responseDTOS.add(BoardDTO.create(board));
+            responseDTOS.add(BoardDTO.create(board,board.getMember().getNickname()));
             //responseDTOS의 List 변수에 BoardDTO를 생성하여 저장
         }
         return responseDTOS;
@@ -34,7 +34,8 @@ public class BoardService {
     @Transactional
     public BoardDTO findBoard(int id){
         boardRepositroy.updateHits(id);
-        return BoardDTO.create(boardRepositroy.findById(id).get());
+        Board board = boardRepositroy.findById(id).get();
+        return BoardDTO.create(board,board.getMember().getNickname());
     }
 
     public void findUserName(String username){

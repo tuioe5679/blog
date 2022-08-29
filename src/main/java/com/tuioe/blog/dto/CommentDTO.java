@@ -10,12 +10,16 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class CommentDTO {
     private String content;
+    private String nickname;
     private LocalDateTime date;
 
-    public static CommentDTO create(Comment comment){
+
+    public static CommentDTO create(Comment comment,String nickname){
         return new CommentDTO(comment.getContent(),
+                              nickname,
                               comment.getDate());
     }
 

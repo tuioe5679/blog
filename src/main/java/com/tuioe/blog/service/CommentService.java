@@ -23,7 +23,7 @@ public class CommentService {
         List<Comment> comments = commentRepositroy.findAll();
         List<CommentDTO> responseDTO = new ArrayList<>();
         for(Comment comment: comments){
-            responseDTO.add(CommentDTO.create(comment));
+            responseDTO.add(CommentDTO.create(comment, comment.getMember().getNickname()));
         }
         return responseDTO;
     }
@@ -33,7 +33,8 @@ public class CommentService {
     }
 
     public CommentDTO findComment(int id){
-        return CommentDTO.create(commentRepositroy.findById(id).get());
+        Comment comment = commentRepositroy.findById(id).get();
+        return CommentDTO.create(comment,comment.getMember().getNickname());
     }
 
     public void createComment(CommentDTO dto){
