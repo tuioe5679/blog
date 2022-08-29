@@ -31,7 +31,7 @@ public class SecurityConfig  {
         .formLogin()
                 .loginPage("/login")                                // 로그인 페이지 URL
                 .loginProcessingUrl("/login")                       // 로그인 URL을 통해 시큐리티가 대신 로그인을 진행
-                .defaultSuccessUrl("/")                             // 로그인 완료시 이동할 URL
+                .defaultSuccessUrl("/user")                             // 로그인 완료시 이동할 URL
                 .usernameParameter("email");                        // PrincipalDetailsService의 username 인자의 이름을 지정
                                                                     // login.html의 from에서 username이 아닌 email,id를 사용시 설정
         return http.build();
