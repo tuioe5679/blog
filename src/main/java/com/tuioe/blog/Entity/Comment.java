@@ -20,9 +20,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)// 기본키 생성 전략을 DB에게 위임(MySQL = Auto INCREMENT)
     private Integer id;
 
-    @ManyToOne// 연관관계를 지정 n:1 관계를 설정한다
-    @JoinColumn(name="nickname")// 외래키를 지정 FK member의 PK를 외래키로 지정
-    private Member member;
+    @ManyToOne(fetch = FetchType.LAZY)// 연관관계를 지정 n:1 관계를 설정한다
+    @JoinColumn(name="idx")// 외래키를 지정 FK member의 PK를 외래키로 지정
+    private Board board;
 
     @Column(nullable = false,length = 1000)// null X 길이는 1000
     private String content;
@@ -30,10 +30,11 @@ public class Comment {
     @Column(nullable = false)// null X
     @CreatedDate
     private LocalDateTime date;
+
     @Builder
-    public Comment(Integer id, Member member, String content, LocalDateTime date) {
+    public Comment(Integer id, Board board, String content, LocalDateTime date) {
         this.id = id;
-        this.member = member;
+        this.board = board;
         this.content = content;
         this.date = date;
     }

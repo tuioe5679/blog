@@ -1,12 +1,13 @@
 package com.tuioe.blog.Entity;
 
-import com.tuioe.blog.dto.BoardDTO;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "board") // 테이블 이름 지정
 @Entity // Entity 클래스로 지정 (데이터베이스와 매핑)
@@ -28,8 +29,8 @@ public class Board {
     @CreatedDate// Entity가 생성되어 저장할때 현재 시간을 자동 생성한다
     private LocalDateTime date;
 
-    @ManyToOne// 연관관계를 지정 n:1 관계를 설정한다
-    @JoinColumn(name="nickname")// 외래키를 지정
+    @ManyToOne(fetch = FetchType.LAZY)// 연관관계를 지정 n:1 관계를 설정한다
+    @JoinColumn(name="member_id")// 외래키를 지정
     private Member member;
 
     @Column(nullable = false)// null X
