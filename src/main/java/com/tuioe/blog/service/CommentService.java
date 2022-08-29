@@ -13,10 +13,9 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    String username;
+    private String username;
     @Autowired
     private CommentRepositroy commentRepositroy;
-
     @Autowired
     private MemberRepositroy memberRepositroy;
 
@@ -29,7 +28,7 @@ public class CommentService {
         return responseDTO;
     }
 
-    public void getUsername(String username){
+    public void findUserName(String username){
         this.username = username;
     }
 
@@ -38,8 +37,8 @@ public class CommentService {
     }
 
     public void createComment(CommentDTO dto){
-        Member member = memberRepositroy.findByEmail(username);
         Comment comment = dto.commentCreate(dto);
+        Member member = memberRepositroy.findByEmail(username);
         comment.setMember(member);
         commentRepositroy.save(comment);
     }

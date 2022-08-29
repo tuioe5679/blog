@@ -1,11 +1,14 @@
 package com.tuioe.blog.controller;
 
 import com.tuioe.blog.dto.MemberDTO;
+import com.tuioe.blog.service.BoardService;
 import com.tuioe.blog.service.CommentService;
 import com.tuioe.blog.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -16,6 +19,9 @@ public class MainController {
 
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    BoardService boardService;
 
     @GetMapping("/")
     public String getMainPage(){
@@ -30,7 +36,8 @@ public class MainController {
     @GetMapping("/user")
     public String getUserPage(Principal principal){
         String username = principal.getName();
-        commentService.getUsername(username);
+        boardService.findUserName(username);
+        commentService.findUserName(username);
         return "user.html";
     }
 
@@ -45,7 +52,7 @@ public class MainController {
     }
 
     @PostMapping("/singup")
-    public String SingUp(MemberDTO dto){
+    public String SingUp(@Valid MemberDTO dto){
         memberService.Join(dto);
         return "redirect:/login.html";
     }

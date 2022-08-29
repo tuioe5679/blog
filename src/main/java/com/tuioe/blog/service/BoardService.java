@@ -1,8 +1,10 @@
 package com.tuioe.blog.service;
 
 import com.tuioe.blog.Entity.Board;
+import com.tuioe.blog.Entity.Member;
 import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.repositroy.BoardRepositroy;
+import com.tuioe.blog.repositroy.MemberRepositroy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -12,8 +14,11 @@ import java.util.List;
 @Service
 public class BoardService {
 
+    private String username;
     @Autowired
     private BoardRepositroy boardRepositroy;
+    @Autowired
+    private MemberRepositroy memberRepositroy;
 
     //블로그의 모든 글을 반환
     public List<BoardDTO> findAllBoard(){
@@ -31,9 +36,16 @@ public class BoardService {
         boardRepositroy.updateHits(id);
         return BoardDTO.create(boardRepositroy.findById(id).get());
     }
+
+    public void findUserName(String username){
+        this.username = username;
+    }
+
     //블로그에 글 작성
     public void createBoard(BoardDTO dto){
         Board board = BoardDTO.boardCreate(dto);
+        Member member = memberRepositroy.findByEmail(username);
+        board.setMember(member);
         boardRepositroy.save(board);
     }
     //블로그에 작성된 글을 수정
