@@ -23,6 +23,10 @@ public class Comment {
     @JoinColumn(name="idx")// 외래키를 지정 FK member의 PK를 외래키로 지정
     private Board board;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="member_id")
+    private Member member;
+
     @Column(nullable = false,length = 1000)// null X 길이는 1000
     private String content;
 
