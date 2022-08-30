@@ -1,5 +1,6 @@
 package com.tuioe.blog.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tuioe.blog.Entity.Member;
 import com.tuioe.blog.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class MemberDTO {
 
     @Email(message = "이메일 형식으로 입력해주세요")
@@ -31,14 +33,20 @@ public class MemberDTO {
     @NotBlank(message = "핸드폰 번호는 필수 항목 입니다")
     private String phoneNumber;
 
-    public MemberDTO(String name, String nickname, String phoneNumber) {
+    private String role;
+
+    public MemberDTO(String name, String nickname, String phoneNumber,String role) {
         this.name = name;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
+        this.role = role;
     }
 
     public static MemberDTO create(Member member){
-        return new MemberDTO(member.getName(),member.getNickname(),member.getPhoneNumber());
+        return new MemberDTO(member.getName(),
+                             member.getNickname(),
+                             member.getPhoneNumber(),
+                             member.getRole());
     }
 
     public static Member memberCreate(MemberDTO dto){
