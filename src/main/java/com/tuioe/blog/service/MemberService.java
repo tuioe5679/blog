@@ -1,6 +1,8 @@
 package com.tuioe.blog.service;
 
+import com.tuioe.blog.Entity.Board;
 import com.tuioe.blog.Entity.Member;
+import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.dto.MemberDTO;
 import com.tuioe.blog.repositroy.MemberRepositroy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MemberService implements UserDetailsService {
@@ -30,6 +35,15 @@ public class MemberService implements UserDetailsService {
         memberRepositroy.save(member);
     }
 
+    public List<MemberDTO> findAllMember(){
+        List<Member> members = memberRepositroy.findAll();
+        List<MemberDTO> responseDTOS = new ArrayList<>();
+        for(Member member: members){ // 향상된 for문 사용 주로 배열에 사용
+            responseDTOS.add(MemberDTO.create(member));
+            //responseDTOS의 List 변수에 MemberDTO 생성하여 저장
+        }
+        return responseDTOS;
+    }
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // email을 가지는 유저 정보를 찾아서 존재하면 리턴

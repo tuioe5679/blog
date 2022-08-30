@@ -1,6 +1,7 @@
 package com.tuioe.blog.dto;
 
 import com.tuioe.blog.Entity.Member;
+import com.tuioe.blog.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,16 @@ public class MemberDTO {
 
     @NotBlank(message = "핸드폰 번호는 필수 항목 입니다")
     private String phoneNumber;
+
+    public MemberDTO(String name, String nickname, String phoneNumber) {
+        this.name = name;
+        this.nickname = nickname;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public static MemberDTO create(Member member){
+        return new MemberDTO(member.getName(),member.getNickname(),member.getPhoneNumber());
+    }
 
     public static Member memberCreate(MemberDTO dto){
         Member member = Member.builder()
