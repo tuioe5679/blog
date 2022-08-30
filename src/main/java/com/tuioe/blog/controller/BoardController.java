@@ -15,7 +15,7 @@ public class BoardController {
     private BoardService boardService;
 
     @RequestMapping(value = "/boards",method = RequestMethod.GET)
-    public ResponseEntity list(){
+    public ResponseEntity findBoardList(){
         return new ResponseEntity(boardService.findAllBoard(), HttpStatus.OK);
     }
 

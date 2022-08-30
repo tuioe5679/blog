@@ -16,7 +16,7 @@ public class CommentController {
     private CommentService commentService;
 
     @RequestMapping(value = "/comments",method = RequestMethod.GET)
-    public ResponseEntity list(){
+    public ResponseEntity findCommentList(){
         return new ResponseEntity(commentService.findAllComment(), HttpStatus.OK);
     }
 
