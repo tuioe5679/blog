@@ -44,6 +44,12 @@ public class MemberService implements UserDetailsService {
         }
         return responseDTOS;
     }
+
+    public MemberDTO findMember(int id){
+        Member member = memberRepositroy.findById(id).get();
+        return MemberDTO.create(member);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // email을 가지는 유저 정보를 찾아서 존재하면 리턴
