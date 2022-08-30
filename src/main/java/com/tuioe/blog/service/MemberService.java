@@ -1,8 +1,6 @@
 package com.tuioe.blog.service;
 
-import com.tuioe.blog.Entity.Board;
 import com.tuioe.blog.Entity.Member;
-import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.dto.MemberDTO;
 import com.tuioe.blog.repositroy.MemberRepositroy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +47,12 @@ public class MemberService implements UserDetailsService {
         Member member = memberRepositroy.findById(id).get();
         return MemberDTO.create(member);
     }
+
+    public void deleteMember(int id){
+        Member member = memberRepositroy.findById(id).get();
+        memberRepositroy.delete(member);
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

@@ -24,4 +24,10 @@ public class MemberContorller {
     public ResponseEntity findMember(@PathVariable int id){
         return new ResponseEntity(memberService.findMember(id),HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/member/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity deleteMember(@PathVariable int id){
+        memberService.deleteMember(id);
+        return new ResponseEntity("삭제완료",HttpStatus.OK);
+    }
 }
