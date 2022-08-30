@@ -2,6 +2,7 @@ package com.tuioe.blog.controller;
 
 import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.service.BoardService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequiredArgsConstructor
 public class BoardController {
 
-    @Autowired
-    private BoardService boardService;
+    private final BoardService boardService;
 
     @RequestMapping(value = "/boards",method = RequestMethod.GET)
     public ResponseEntity findBoardList(){

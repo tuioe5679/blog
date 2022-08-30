@@ -4,6 +4,7 @@ import com.tuioe.blog.dto.MemberDTO;
 import com.tuioe.blog.service.BoardService;
 import com.tuioe.blog.service.CommentService;
 import com.tuioe.blog.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +12,14 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
+@RequiredArgsConstructor
 public class MainController {
 
-    @Autowired
-    MemberService memberService;
+    private final MemberService memberService;
 
-    @Autowired
-    CommentService commentService;
+    private final CommentService commentService;
 
-    @Autowired
-    BoardService boardService;
+    private final BoardService boardService;
 
     @GetMapping("/")
     public String getMainPage(){
