@@ -2,7 +2,6 @@ package com.tuioe.blog.repositroy;
 
 import com.tuioe.blog.Entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
 
 public interface MemberRepositroy extends JpaRepository<Member, Integer> {
 
