@@ -45,4 +45,15 @@ public class CommentService {
         comment.setMember(member);
         commentRepositroy.save(comment);
     }
+
+    public void updateComment(int id,CommentDTO dto){
+        Comment comment = commentRepositroy.findById(id).get();
+        comment.setContent(dto.getContent());
+        commentRepositroy.save(comment);
+    }
+
+    public void deleteComment(int id){
+        Comment comment = commentRepositroy.findById(id).get();
+        commentRepositroy.delete(comment);
+    }
 }

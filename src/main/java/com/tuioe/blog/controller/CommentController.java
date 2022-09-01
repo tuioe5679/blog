@@ -28,4 +28,16 @@ public class CommentController {
         commentService.createComment(dto);
         return new ResponseEntity("Create",HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "/comment/{id}",method = RequestMethod.PUT)
+    public ResponseEntity commentUpdate(@PathVariable int id,@RequestBody CommentDTO dto){
+        commentService.updateComment(id,dto);
+        return new ResponseEntity("Create",HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/comment/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity commentDelete(@PathVariable int id){
+        commentService.deleteComment(id);
+        return new ResponseEntity("Delete",HttpStatus.OK);
+    }
 }
