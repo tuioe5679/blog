@@ -1,5 +1,6 @@
 package com.tuioe.blog.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tuioe.blog.Entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,8 @@ public class BoardDTO {
     private String title;
     private String content;
     private String nickname;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime date;
 
     public static BoardDTO create(Board board,String nickname){
