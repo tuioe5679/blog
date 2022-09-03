@@ -6,7 +6,6 @@ import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.repositroy.BoardRepositroy;
 import com.tuioe.blog.repositroy.MemberRepositroy;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -18,9 +17,9 @@ public class BoardService {
 
     private String username;
 
-    private BoardRepositroy boardRepositroy;
+    private final BoardRepositroy boardRepositroy;
 
-    private MemberRepositroy memberRepositroy;
+    private final MemberRepositroy memberRepositroy;
 
     //블로그의 모든 글을 반환
     public List<BoardDTO> findAllBoard(){
