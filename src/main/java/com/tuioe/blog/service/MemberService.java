@@ -4,7 +4,6 @@ import com.tuioe.blog.Entity.Member;
 import com.tuioe.blog.dto.MemberDTO;
 import com.tuioe.blog.repositroy.MemberRepositroy;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
