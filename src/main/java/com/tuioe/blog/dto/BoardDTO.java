@@ -11,17 +11,25 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardDTO {
+    private Integer idx;
+
     private String title;
+
     private String content;
+
     private String nickname;
 
+    private int hits;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime date;
 
     public static BoardDTO create(Board board,String nickname){
-        return new BoardDTO(board.getTitle(),
+        return new BoardDTO(
+                            board.getIdx(),
+                            board.getTitle(),
                             board.getContent(),
                             nickname,
+                            board.getHits(),
                             board.getDate());
     }
 
