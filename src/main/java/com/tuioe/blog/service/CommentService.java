@@ -56,4 +56,8 @@ public class CommentService {
         Comment comment = commentRepositroy.findById(id).get();
         commentRepositroy.delete(comment);
     }
+
+    public void allDeleteComment(){
+        commentRepositroy.deleteAll();
+    }
 }

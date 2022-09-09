@@ -40,4 +40,10 @@ public class CommentController {
         commentService.deleteComment(id);
         return new ResponseEntity("Delete",HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/comments",method = RequestMethod.DELETE)
+    public ResponseEntity commentALlDelete(){
+        commentService.allDeleteComment();
+        return new ResponseEntity("Delete",HttpStatus.OK);
+    }
 }

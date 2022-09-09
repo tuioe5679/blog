@@ -60,6 +60,7 @@ public class BoardService {
         if(dto.getTitle() != null){
             board.setTitle(dto.getTitle());
         }
+
         boardRepositroy.save(board);
     }
     //블로그에 작성된 글을 삭제
