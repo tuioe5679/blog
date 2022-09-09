@@ -20,6 +20,7 @@ public class BoardDTO {
     private String nickname;
 
     private int hits;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime date;
 

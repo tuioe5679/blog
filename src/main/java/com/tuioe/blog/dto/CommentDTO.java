@@ -1,5 +1,6 @@
 package com.tuioe.blog.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tuioe.blog.Entity.Comment;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,8 @@ import java.time.LocalDateTime;
 public class CommentDTO {
     private String content;
     private String nickname;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime date;
 
 
