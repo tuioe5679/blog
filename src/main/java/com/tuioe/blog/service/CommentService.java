@@ -1,12 +1,13 @@
 package com.tuioe.blog.service;
 
+import com.tuioe.blog.Entity.Board;
 import com.tuioe.blog.Entity.Comment;
 import com.tuioe.blog.Entity.Member;
 import com.tuioe.blog.dto.CommentDTO;
+import com.tuioe.blog.repositroy.BoardRepositroy;
 import com.tuioe.blog.repositroy.CommentRepositroy;
 import com.tuioe.blog.repositroy.MemberRepositroy;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class CommentService {
     private final CommentRepositroy commentRepositroy;
 
     private final MemberRepositroy memberRepositroy;
+
+    private final BoardRepositroy boardRepositroy;
 
     public List<CommentDTO> findAllComment(){
         List<Comment> comments = commentRepositroy.findAll();
@@ -42,7 +45,9 @@ public class CommentService {
     public void createComment(CommentDTO dto){
         Comment comment = dto.commentCreate(dto);
         Member member = memberRepositroy.findByEmail(username);
+        Board board = boardRepositroy.findById(dto.getIdx()).get();
         comment.setMember(member);
+        comment.setBoard(board);
         commentRepositroy.save(comment);
     }
 
