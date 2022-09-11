@@ -16,11 +16,18 @@ public class CommentDTO {
     private String content;
     private String nickname;
 
+    private int boardId;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime date;
 
+    public CommentDTO(String content, String nickname, LocalDateTime date) {
+        this.content = content;
+        this.nickname = nickname;
+        this.date = date;
+    }
 
-    public static CommentDTO create(Comment comment,String nickname){
+    public static CommentDTO create(Comment comment, String nickname){
         return new CommentDTO(comment.getContent(),
                               nickname,
                               comment.getDate());
