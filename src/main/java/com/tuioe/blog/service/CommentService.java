@@ -24,8 +24,9 @@ public class CommentService {
 
     private final BoardRepositroy boardRepositroy;
 
-    public List<CommentDTO> findAllComment(){
-        List<Comment> comments = commentRepositroy.findAll();
+    public List<CommentDTO> findAllComment(int id){
+        Board board = boardRepositroy.findById(id).get();
+        List<Comment> comments = commentRepositroy.findAllByBoard(board);
         List<CommentDTO> responseDTO = new ArrayList<>();
         for(Comment comment: comments){
             responseDTO.add(CommentDTO.create(comment, comment.getMember().getNickname()));
@@ -35,11 +36,6 @@ public class CommentService {
 
     public void findUserName(String username){
         this.username = username;
-    }
-
-    public CommentDTO findComment(int id){
-        Comment comment = commentRepositroy.findById(id).get();
-        return CommentDTO.create(comment,comment.getMember().getNickname());
     }
 
     public void createComment(CommentDTO dto){

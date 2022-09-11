@@ -13,14 +13,9 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    @RequestMapping(value = "/comments",method = RequestMethod.GET)
-    public ResponseEntity findCommentList(){
-        return new ResponseEntity(commentService.findAllComment(), HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/comment/{id}",method = RequestMethod.GET)
-    public ResponseEntity findComment(@PathVariable int id){
-        return new ResponseEntity(commentService.findComment(id),HttpStatus.OK);
+    public ResponseEntity findCommentList(@PathVariable int id){
+        return new ResponseEntity(commentService.findAllComment(id),HttpStatus.OK);
     }
 
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
