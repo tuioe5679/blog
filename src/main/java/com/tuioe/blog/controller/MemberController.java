@@ -1,13 +1,12 @@
 package com.tuioe.blog.controller;
 
+import com.tuioe.blog.dto.MemberDTO;
 import com.tuioe.blog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,5 +28,11 @@ public class MemberController {
     public ResponseEntity deleteMember(@PathVariable int id){
         memberService.deleteMember(id);
         return new ResponseEntity("삭제완료",HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/singup",method = RequestMethod.POST)
+    public ResponseEntity SingUp(@Valid @RequestBody MemberDTO dto){
+        memberService.Join(dto);
+        return new ResponseEntity("회원가입 완료",HttpStatus.CREATED);
     }
 }

@@ -1,13 +1,11 @@
 package com.tuioe.blog.controller;
 
-import com.tuioe.blog.dto.MemberDTO;
 import com.tuioe.blog.service.BoardService;
 import com.tuioe.blog.service.CommentService;
 import com.tuioe.blog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.*;;
 import java.security.Principal;
 
 @Controller
@@ -43,14 +41,5 @@ public class MainController {
         return "admin.html";
     }
 
-    @GetMapping("/singup")
-    public String getSingUpPage(){
-        return "singUp.html";
-    }
 
-    @PostMapping("/singup")
-    public String SingUp(@Valid MemberDTO dto){
-        memberService.Join(dto);
-        return "redirect:/login.html";
-    }
 }
