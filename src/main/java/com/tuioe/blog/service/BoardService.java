@@ -26,7 +26,9 @@ public class BoardService {
         List<Board> boards = boardRepositroy.findAll();
         List<BoardDTO> responseDTOS = new ArrayList<>();
         for(Board board: boards){ // 향상된 for문 사용 주로 배열에 사용
-            responseDTOS.add(BoardDTO.create(board,board.getMember().getNickname()));
+            BoardDTO boardDTO = BoardDTO.create(board,board.getMember().getNickname());
+            boardDTO.setContent(boardDTO.boardContentSub(board));
+            responseDTOS.add(boardDTO);
             //responseDTOS의 List 변수에 BoardDTO를 생성하여 저장
         }
         return responseDTOS;
@@ -60,7 +62,6 @@ public class BoardService {
         if(dto.getTitle() != null){
             board.setTitle(dto.getTitle());
         }
-
         boardRepositroy.save(board);
     }
     //블로그에 작성된 글을 삭제

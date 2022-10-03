@@ -40,4 +40,9 @@ public class BoardDTO {
                 .content(dto.getContent())
                 .hits(0).build();
     }
+
+    public String boardContentSub(Board board){
+        String subContent = board.getContent().substring(0,150) + "...";
+        return subContent;
+    }
 }
