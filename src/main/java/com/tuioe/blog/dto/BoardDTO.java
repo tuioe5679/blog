@@ -42,7 +42,13 @@ public class BoardDTO {
     }
 
     public String boardContentSub(Board board){
-        String subContent = board.getContent().substring(0,150) + "...";
-        return subContent;
+        String boardContent = board.getContent();
+        if(!(boardContent.length() < 150)){
+            String subContent = board.getContent().substring(0,150) + "...";
+            return subContent;
+        }
+        else {
+            return boardContent + "...";
+        }
     }
 }
