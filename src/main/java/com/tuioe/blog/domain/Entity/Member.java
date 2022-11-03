@@ -1,4 +1,4 @@
-package com.tuioe.blog.Entity;
+package com.tuioe.blog.domain.Entity;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
