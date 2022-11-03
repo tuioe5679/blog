@@ -1,7 +1,7 @@
 package com.tuioe.blog.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.tuioe.blog.Entity.Member;
+import com.tuioe.blog.domain.Entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

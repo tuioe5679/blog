@@ -1,8 +1,8 @@
 package com.tuioe.blog.service;
 
-import com.tuioe.blog.Entity.Member;
+import com.tuioe.blog.domain.Entity.Member;
 import com.tuioe.blog.dto.MemberDTO;
-import com.tuioe.blog.repositroy.MemberRepositroy;
+import com.tuioe.blog.domain.repositroy.MemberRepositroy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
