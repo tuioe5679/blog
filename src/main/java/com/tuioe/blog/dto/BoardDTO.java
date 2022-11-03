@@ -1,7 +1,7 @@
 package com.tuioe.blog.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.tuioe.blog.Entity.Board;
+import com.tuioe.blog.domain.Entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardDTO {
-    private Integer idx;
+    private Long idx;
 
     private String title;
 

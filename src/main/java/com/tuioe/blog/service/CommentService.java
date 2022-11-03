@@ -1,12 +1,12 @@
 package com.tuioe.blog.service;
 
-import com.tuioe.blog.Entity.Board;
-import com.tuioe.blog.Entity.Comment;
-import com.tuioe.blog.Entity.Member;
+import com.tuioe.blog.domain.Entity.Board;
+import com.tuioe.blog.domain.Entity.Comment;
+import com.tuioe.blog.domain.Entity.Member;
 import com.tuioe.blog.dto.CommentDTO;
-import com.tuioe.blog.repositroy.BoardRepositroy;
-import com.tuioe.blog.repositroy.CommentRepositroy;
-import com.tuioe.blog.repositroy.MemberRepositroy;
+import com.tuioe.blog.domain.repositroy.BoardRepositroy;
+import com.tuioe.blog.domain.repositroy.CommentRepositroy;
+import com.tuioe.blog.domain.repositroy.MemberRepositroy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class CommentService {
 
     private final BoardRepositroy boardRepositroy;
 
-    public List<CommentDTO> findAllComment(int id){
+    public List<CommentDTO> findAllComment(Long id){
         Board board = boardRepositroy.findById(id).get();
         List<Comment> comments = commentRepositroy.findAllByBoard(board);
         List<CommentDTO> responseDTO = new ArrayList<>();
