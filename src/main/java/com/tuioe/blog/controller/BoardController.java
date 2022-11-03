@@ -14,35 +14,35 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @RequestMapping(value = "/boards",method = RequestMethod.GET)
+    @GetMapping("/boards")
     public ResponseEntity findBoardList(){
         return new ResponseEntity(boardService.findAllBoard(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/board/{id}",method = RequestMethod.GET)
+    @GetMapping("/board/{id}")
     public ResponseEntity findBoard(@PathVariable int id){
         return new ResponseEntity(boardService.findBoard(id),HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/board",method = RequestMethod.POST)
+    @PostMapping("/board")
     public ResponseEntity boardAdd(@RequestBody BoardDTO dto){
         boardService.createBoard(dto);
         return new ResponseEntity("Create",HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/board/{id}",method = RequestMethod.PUT)
+    @PutMapping("/board/{id}")
     public ResponseEntity boardUpdate(@PathVariable int id,@RequestBody BoardDTO dto){
         boardService.updateBoard(id,dto);
         return new ResponseEntity("Update",HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/board/{id}",method = RequestMethod.DELETE)
+    @DeleteMapping("/board/{id}")
     public ResponseEntity boardDelete(@PathVariable int id){
         boardService.deleteBoard(id);
         return new ResponseEntity("Delete",HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/boards",method = RequestMethod.DELETE)
+    @DeleteMapping("/boards")
     public ResponseEntity boardAllDelete(){
         boardService.deleteAllBoard();
         return new ResponseEntity("AllDelete",HttpStatus.OK);
