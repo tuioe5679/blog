@@ -59,7 +59,12 @@ public class BoardService {
     @Transactional
     public void updateBoard(Long id, BoardRequestDto dto){
         Board board = boardRepositroy.findById(id).get();
-        board.update(dto);
+        if(dto.getContent() != null){
+            board.setContent(dto.getContent());
+        }
+        if(dto.getTitle() != null){
+            board.setTitle(dto.getTitle());
+        }
         boardRepositroy.save(board);
     }
 

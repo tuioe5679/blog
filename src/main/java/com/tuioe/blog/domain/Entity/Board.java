@@ -1,8 +1,6 @@
 package com.tuioe.blog.domain.Entity;
 
-import com.tuioe.blog.dto.BoardDTO;
 import com.tuioe.blog.dto.board.BoardRequestDto;
-import com.tuioe.blog.dto.board.BoardResponseDto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -47,14 +45,5 @@ public class Board {
         this.date = date;
         this.member = member;
         this.hits = hits;
-    }
-
-    public void update(BoardRequestDto dto){
-        if(dto.getTitle()!=""){
-            this.title = dto.getTitle();
-        }
-        if(dto.getContent()!=""){
-            this.content = dto.getContent();
-        }
     }
 }
