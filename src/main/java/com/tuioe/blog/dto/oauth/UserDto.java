@@ -23,8 +23,7 @@ public class UserDto {
     }
 
     public User toEntity(){
-        return User
-                .builder()
+        return User.builder()
                 .name(nickname)
                 .email(email)
                 .age(age)

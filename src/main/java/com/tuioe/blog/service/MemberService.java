@@ -1,9 +1,6 @@
 package com.tuioe.blog.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.tuioe.blog.domain.Entity.Member;
-import com.tuioe.blog.dto.MemberDTO;
-import com.tuioe.blog.domain.repositroy.MemberRepositroy;
 import com.tuioe.blog.dto.oauth.TokenDto;
 import com.tuioe.blog.dto.oauth.UserDto;
 import com.tuioe.blog.oauth.domain.User;
@@ -14,35 +11,14 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService  {
-    private final MemberRepositroy memberRepositroy;
     private final UserRepository userRepository;
     private final OauthUserService oauthUserService;
 
-    public List<MemberDTO> findAllMember(){
-        List<Member> members = memberRepositroy.findAll();
-        List<MemberDTO> responseDTOS = new ArrayList<>();
-        for(Member member: members){ // 향상된 for문 사용 주로 배열에 사용
-            responseDTOS.add(MemberDTO.create(member));
-            //responseDTOS의 List 변수에 MemberDTO 생성하여 저장
-        }
-        return responseDTOS;
-    }
-
-    public MemberDTO findMember(int id){
-        Member member = memberRepositroy.findById(id).get();
-        return MemberDTO.create(member);
-    }
-
-    public void deleteMember(int id){
-        Member member = memberRepositroy.findById(id).get();
-        memberRepositroy.delete(member);
-    }
+    public User user;
 
     public User join(TokenDto tokenDto) throws JsonProcessingException, ParseException {
 
@@ -56,6 +32,7 @@ public class MemberService  {
         User userData = userRepository.findByEmail((String)json.get("email"));
 
         if(userData!=null){
+            user = userData;
             return userData;
         }
         else {
