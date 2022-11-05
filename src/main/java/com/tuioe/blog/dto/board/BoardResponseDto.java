@@ -23,7 +23,7 @@ public class BoardResponseDto {
     public BoardResponseDto(Board board) {
         this.title = board.getTitle();
         this.content = board.getContent();
-        this.nickname = "이름";
+        this.nickname = board.getUser().getName();
         this.hits = board.getHits();
         this.date = board.getDate();
     }

@@ -1,6 +1,7 @@
 package com.tuioe.blog.domain.Entity;
 
 import com.tuioe.blog.dto.board.BoardRequestDto;
+import com.tuioe.blog.oauth.domain.User;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,19 +32,19 @@ public class Board {
     private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY)// 연관관계를 지정 n:1 관계를 설정한다
-    @JoinColumn(name="member_id")// 외래키를 지정
-    private Member member;
+    @JoinColumn(name="user_id")// 외래키를 지정
+    private User user;
 
     @Column(nullable = false)// null X
     private int hits;
 
     @Builder //Builder 패턴
-    public Board(Long idx, String title, String content, LocalDateTime date, Member member, int hits) {
+    public Board(Long idx, String title, String content, LocalDateTime date, User user, int hits) {
         this.idx = idx;
         this.title = title;
         this.content = content;
         this.date = date;
-        this.member = member;
+        this.user = user;
         this.hits = hits;
     }
 }
