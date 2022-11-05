@@ -1,35 +1,28 @@
 package com.tuioe.blog.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tuioe.blog.domain.Entity.Member;
 import com.tuioe.blog.dto.MemberDTO;
 import com.tuioe.blog.domain.repositroy.MemberRepositroy;
+import com.tuioe.blog.dto.oauth.TokenDto;
+import com.tuioe.blog.dto.oauth.UserDto;
+import com.tuioe.blog.oauth.domain.User;
+import com.tuioe.blog.oauth.domain.UserRepository;
+import com.tuioe.blog.oauth.service.OauthUserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService implements UserDetailsService {
-
+public class MemberService  {
     private final MemberRepositroy memberRepositroy;
-
-    // 패스워크 암호화
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    //회원가입 처리
-    public void Join(MemberDTO dto){
-        // 패스워드는 bCryptPasswordEncoder를 통해서 암호화 해야 Security 로그인 가능
-        String EncPassword = bCryptPasswordEncoder.encode(dto.getPassword());
-        dto.setPassword(EncPassword);
-        Member member = MemberDTO.memberCreate(dto);
-        memberRepositroy.save(member);
-    }
+    private final UserRepository userRepository;
+    private final OauthUserService oauthUserService;
 
     public List<MemberDTO> findAllMember(){
         List<Member> members = memberRepositroy.findAll();
@@ -51,19 +44,31 @@ public class MemberService implements UserDetailsService {
         memberRepositroy.delete(member);
     }
 
+    public User join(TokenDto tokenDto) throws JsonProcessingException, ParseException {
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // email을 가지는 유저 정보를 찾아서 존재하면 리턴
-        // 존재하지 않으면 null을 리턴
-        Member member = memberRepositroy.findByEmail(email);
-        if(member != null){
-            return User.builder()
-                    .username(member.getEmail())
-                    .password(member.getPassword())
-                    .roles(member.getRole())
-                    .build();
+        JSONParser parser = new JSONParser();
+
+        String jsonInString = oauthUserService.loadNaverUserData(tokenDto);
+        JSONObject jsonObject = (JSONObject) parser.parse(jsonInString);
+
+        JSONObject json = (JSONObject) jsonObject.get("response");
+
+        User userData = userRepository.findByEmail((String)json.get("email"));
+
+        if(userData!=null){
+            return userData;
         }
-        return (UserDetails) new UsernameNotFoundException(email);
+        else {
+            UserDto dto = UserDto
+                    .builder()
+                    .email((String)json.get("email"))
+                    .nickname((String)json.get("nickname"))
+                    .picture((String) json.get("profile_image"))
+                    .age((String) json.get("age"))
+                    .build();
+
+            User user = dto.toEntity();
+            return userRepository.save(user);
+        }
     }
 }
