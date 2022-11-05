@@ -1,4 +1,4 @@
-package com.tuioe.blog.dto;
+package com.tuioe.blog.dto.oauth;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

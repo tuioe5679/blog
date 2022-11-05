@@ -1,4 +1,4 @@
-package com.tuioe.blog.dto;
+package com.tuioe.blog.dto.oauth;
 
 import com.tuioe.blog.oauth.domain.Role;
 import com.tuioe.blog.oauth.domain.User;
