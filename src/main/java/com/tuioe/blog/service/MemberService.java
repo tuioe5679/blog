@@ -1,10 +1,12 @@
 package com.tuioe.blog.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.tuioe.blog.dto.oauth.TokenDto;
+import com.tuioe.blog.dto.oauth.NaverUserTokenDto;
 import com.tuioe.blog.dto.oauth.UserDto;
-import com.tuioe.blog.oauth.domain.User;
+import com.tuioe.blog.oauth.domain.Users;
 import com.tuioe.blog.oauth.domain.UserRepository;
+import com.tuioe.blog.oauth.jwt.TokenProvider;
+import com.tuioe.blog.oauth.jwt.dto.TokenDto;
 import com.tuioe.blog.oauth.service.OauthUserService;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
@@ -17,10 +19,11 @@ import org.springframework.stereotype.Service;
 public class MemberService  {
     private final UserRepository userRepository;
     private final OauthUserService oauthUserService;
+    private final TokenProvider tokenProvider;
 
-    public User user;
+    public Users user;
 
-    public User join(TokenDto tokenDto) throws JsonProcessingException, ParseException {
+    public TokenDto join(NaverUserTokenDto tokenDto) throws JsonProcessingException, ParseException {
 
         JSONParser parser = new JSONParser();
 
@@ -29,11 +32,10 @@ public class MemberService  {
 
         JSONObject json = (JSONObject) jsonObject.get("response");
 
-        User userData = userRepository.findByEmail((String)json.get("email"));
+        Users userData = userRepository.findByEmail((String)json.get("email"));
 
         if(userData!=null){
             user = userData;
-            return userData;
         }
         else {
             UserDto dto = UserDto
@@ -44,8 +46,10 @@ public class MemberService  {
                     .age((String) json.get("age"))
                     .build();
 
-            User user = dto.toEntity();
-            return userRepository.save(user);
+            Users user = dto.toEntity();
+            userRepository.save(user);
+            this.user = user;
         }
+        return tokenProvider.tokenCreate(user);
     }
 }

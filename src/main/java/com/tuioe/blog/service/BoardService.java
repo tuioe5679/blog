@@ -5,7 +5,6 @@ import com.tuioe.blog.domain.repositroy.BoardRepositroy;
 import com.tuioe.blog.dto.board.BoardListResponseDto;
 import com.tuioe.blog.dto.board.BoardRequestDto;
 import com.tuioe.blog.dto.board.BoardResponseDto;
-import com.tuioe.blog.dto.oauth.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;

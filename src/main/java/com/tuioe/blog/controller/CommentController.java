@@ -1,6 +1,5 @@
 package com.tuioe.blog.controller;
 
-import com.tuioe.blog.dto.CommentDTO;
 import com.tuioe.blog.dto.comment.CommentRequestDto;
 import com.tuioe.blog.service.CommentService;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.tuioe.blog.dto.oauth;
 
 import com.tuioe.blog.oauth.domain.Role;
-import com.tuioe.blog.oauth.domain.User;
+import com.tuioe.blog.oauth.domain.Users;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +22,8 @@ public class UserDto {
         this.age = age;
     }
 
-    public User toEntity(){
-        return User.builder()
+    public Users toEntity(){
+        return Users.builder()
                 .name(nickname)
                 .email(email)
                 .age(age)

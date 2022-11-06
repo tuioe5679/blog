@@ -1,6 +1,6 @@
 package com.tuioe.blog.domain.Entity;
 
-import com.tuioe.blog.oauth.domain.User;
+import com.tuioe.blog.oauth.domain.Users;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
-    private User user;
+    private Users user;
 
     @Column(nullable = false,length = 1000)// null X 길이는 1000
     private String content;

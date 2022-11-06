@@ -2,7 +2,7 @@ package com.tuioe.blog.oauth.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tuioe.blog.dto.oauth.TokenDto;
+import com.tuioe.blog.dto.oauth.NaverUserTokenDto;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,7 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class OauthUserService {
 
-    public String loadNaverUserData(TokenDto loginToken) throws JsonProcessingException {
+    public String loadNaverUserData(NaverUserTokenDto loginToken) throws JsonProcessingException {
 
         // 네이버 유저 정보 요청 URL
         String url = "https://openapi.naver.com/v1/nid/me";

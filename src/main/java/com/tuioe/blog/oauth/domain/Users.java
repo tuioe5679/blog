@@ -3,13 +3,16 @@ package com.tuioe.blog.oauth.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@ToString
 @Table(name = "users")
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +36,7 @@ public class User {
     private Role role;
 
     @Builder
-    public User(String name, String email, String picture, String age, Role role) {
+    public Users(String name, String email, String picture, String age, Role role) {
         this.name = name;
         this.email = email;
         this.picture = picture;
@@ -41,7 +44,7 @@ public class User {
         this.role = role;
     }
 
-    public User update(String name,String picture){
+    public Users update(String name, String picture){
         this.name = name;
         this.picture = picture;
         return this;

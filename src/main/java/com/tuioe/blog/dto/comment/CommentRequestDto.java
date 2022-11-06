@@ -12,7 +12,6 @@ public class CommentRequestDto {
 
     private Long idx;
 
-
     public Comment toEntity(){
         return Comment.builder()
                .content(content)

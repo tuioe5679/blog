@@ -5,11 +5,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class TokenDto {
+public class NaverUserTokenDto {
 
     private String loginToken;
 
-    public TokenDto(String loginToken) {
+    public NaverUserTokenDto(String loginToken) {
         this.loginToken = loginToken;
 
     }
